@@ -6,4 +6,4 @@ users:
     shell: /bin/bash
     lock_passwd: true
     ssh_authorized_keys:
-      - ssh-rsa YOUR_PUBLIC_SSH_KEY_HERE
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAwTBppujTTFnjhhQPl3QZiGKrbj+G5DD2kDREiIfiNS 105@306330.ru
