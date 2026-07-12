@@ -9,6 +9,7 @@ terraform {
 
 provider "proxmox" {
   endpoint = var.proxmox_api_url
+  api_token = var.proxmox_api_token
   insecure = true # Игнорируем self-signed сертификат Proxmox
 }
 
@@ -47,7 +48,7 @@ resource "proxmox_virtual_environment_vm" "edge_frontend" {
   }
 
   
-}  # Cloud-Init настройки
+  # Cloud-Init настройки
   initialization {
     datastore_id = var.disk_datastore
     
@@ -65,3 +66,4 @@ resource "proxmox_virtual_environment_vm" "edge_frontend" {
       username = "ansible"
     }
   }
+ } 

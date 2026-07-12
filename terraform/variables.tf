@@ -42,3 +42,8 @@ variable "vm_password" {
   type        = string
   sensitive   = true
 }
+variable "proxmox_api_token" {
+  description = "API токен для Proxmox"
+  type        = string
+  sensitive   = true
+}
