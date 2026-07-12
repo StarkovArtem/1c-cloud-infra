@@ -1,0 +1,14 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfvars
+!terraform.tfvars.example
+
+# Ansible
+*.retry
+*.log
+
+# Системные файлы
+.DS_Store
+Thumbs.db

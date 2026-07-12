@@ -1,0 +1,6 @@
+---
+- name: Configure Edge/Frontend VM (Nginx)
+  hosts: edge_frontend
+  become: yes
+  roles:
+    - nginx

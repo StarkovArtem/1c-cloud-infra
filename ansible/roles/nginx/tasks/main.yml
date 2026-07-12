@@ -1,0 +1,22 @@
+---
+- name: Update apt cache
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Install Nginx
+  apt:
+    name: nginx
+    state: present
+
+- name: Start and enable Nginx service
+  systemd:
+    name: nginx
+    state: started
+    enabled: yes
+
+- name: Allow Nginx in UFW (Firewall)
+  ufw:
+    rule: allow
+    name: Nginx Full
+  ignore_errors: yes # Игнорируем ошибку, если UFW не установлен
