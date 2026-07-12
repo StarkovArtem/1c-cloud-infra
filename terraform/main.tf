@@ -46,9 +46,8 @@ resource "proxmox_virtual_environment_vm" "edge_frontend" {
     model  = "virtio"
   }
 
-  # Cloud-Init для настройки сети и пользователя для Ansible
   
-    # Cloud-Init настройки
+}  # Cloud-Init настройки
   initialization {
     datastore_id = var.disk_datastore
     
@@ -59,7 +58,10 @@ resource "proxmox_virtual_environment_vm" "edge_frontend" {
       }
     }
     
-    # Используем inline user_data вместо user_data_file
-    user_data = file("${path.module}/cloud-init/user-data.yml")
+    # Настройки пользователя через параметры блока initialization
+    user_account {
+      keys     = [var.ssh_public_key]
+      password = var.vm_password
+      username = "ansible"
+    }
   }
-}

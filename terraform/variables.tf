@@ -32,3 +32,13 @@ variable "vm_gateway" {
   description = "Шлюз по умолчанию"
   type        = string
 }
+variable "ssh_public_key" {
+  description = "Публичный SSH ключ для доступа к ВМ"
+  type        = string
+}
+
+variable "vm_password" {
+  description = "Пароль для пользователя ansible"
+  type        = string
+  sensitive   = true
+}
