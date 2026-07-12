@@ -2,15 +2,13 @@ terraform {
   required_providers {
     proxmox = {
       source  = "bpg/proxmox"
-      version = ">= 0.50.0"
+      version = ">= 0.40.0"
     }
   }
 }
 
 provider "proxmox" {
   endpoint = var.proxmox_api_url
-  # API токен лучше передавать через переменную окружения:
-  # export PROXMOX_VE_API_TOKEN="user@pam!token_name=secret_value"
   insecure = true # Игнорируем self-signed сертификат Proxmox
 }
 
@@ -49,13 +47,19 @@ resource "proxmox_virtual_environment_vm" "edge_frontend" {
   }
 
   # Cloud-Init для настройки сети и пользователя для Ansible
+  
+    # Cloud-Init настройки
   initialization {
+    datastore_id = var.disk_datastore
+    
     ip_config {
       ipv4 {
-        address = var.vm_ip_address # Например: "192.168.1.20/24"
+        address = var.vm_ip_address
         gateway = var.vm_gateway
       }
     }
-    user_data_file = file("${path.module}/cloud-init/user-data.yml")
+    
+    # Используем inline user_data вместо user_data_file
+    user_data = file("${path.module}/cloud-init/user-data.yml")
   }
 }
